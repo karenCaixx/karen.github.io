@@ -83,16 +83,16 @@
 
 
 
-<meta name="description" content="本地部署上去了">
+<meta name="description" content="搭建步骤(记录一下)  前提：本地 node git 环境 安装hexo – 打开终端，输入 sudo npm install -g hexo  初始化hexo – 本地目录下创建名为hexo的文件夹，终端定位到该目录下，执行命令：nexo init 安装依赖 – npm install 生成静态页面 – hexo generate 开启服务 – hexo server 本地监听 localhos">
 <meta property="og:type" content="article">
 <meta property="og:title" content="my first article">
 <meta property="og:url" content="http://yoursite.com/2017/11/15/my-first-article/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="本地部署上去了">
-<meta property="og:updated_time" content="2017-11-15T06:36:15.000Z">
+<meta property="og:description" content="搭建步骤(记录一下)  前提：本地 node git 环境 安装hexo – 打开终端，输入 sudo npm install -g hexo  初始化hexo – 本地目录下创建名为hexo的文件夹，终端定位到该目录下，执行命令：nexo init 安装依赖 – npm install 生成静态页面 – hexo generate 开启服务 – hexo server 本地监听 localhos">
+<meta property="og:updated_time" content="2017-11-16T02:49:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="my first article">
-<meta name="twitter:description" content="本地部署上去了">
+<meta name="twitter:description" content="搭建步骤(记录一下)  前提：本地 node git 环境 安装hexo – 打开终端，输入 sudo npm install -g hexo  初始化hexo – 本地目录下创建名为hexo的文件夹，终端定位到该目录下，执行命令：nexo init 安装依赖 – npm install 生成静态页面 – hexo generate 开启服务 – hexo server 本地监听 localhos">
 
 
 
@@ -302,7 +302,29 @@
       
 
       
-        <p>本地部署上去了</p>
+        <p>搭建步骤(记录一下)</p>
+<ol>
+<li>前提：本地 node git 环境</li>
+<li>安装hexo – 打开终端，输入 sudo npm install -g hexo </li>
+<li>初始化hexo – 本地目录下创建名为hexo的文件夹，终端定位到该目录下，执行命令：nexo init</li>
+<li>安装依赖 – npm install</li>
+<li>生成静态页面 – hexo generate</li>
+<li>开启服务 – hexo server 本地监听 localhost:4000</li>
+<li>远程创建repository – your_user_name.github.io (与github用户名一致)</li>
+<li>安装git部署器 – npm install hexo-deployer-git –save</li>
+<li>修改配置文件 – 打开_config.yml 在文件末尾修改<pre><code> deploy
+ type: git 
+repo: 你的repository地址 如 https://github.com/xxx/xxx.github.io.git
+branch: master
+</code></pre><ol>
+<li>部署 – hexo deploy</li>
+<li>效果 – 打开网站 <a href="https://xxx.github.io" target="_blank" rel="external">https://xxx.github.io</a></li>
+<li>发表文章 – hexo new ‘文章名’</li>
+<li>编辑完，重新生成并部署 – hexo clean hexo g hexo d</li>
+</ol>
+</li>
+</ol>
+<p>注意: hexo在hexo目录下执行<br>      hexo命令缩写 hexo g(generate) hexo d(deploy) hexo s(server) hexo n(new)</p>
 
       
     </div>
