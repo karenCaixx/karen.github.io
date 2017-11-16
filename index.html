@@ -74,19 +74,22 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="进阶" type="application/atom+xml" />
 
 
 
 
 
 
+<meta name="description" content="进阶路上">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="进阶">
 <meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="进阶">
+<meta property="og:description" content="进阶路上">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="进阶">
+<meta name="twitter:description" content="进阶路上">
 
 
 
@@ -122,7 +125,7 @@
 
 
 
-  <title>Hexo</title>
+  <title>进阶</title>
   
 
 
@@ -153,7 +156,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">进阶</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -230,16 +233,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/15/my-first-article/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/16/1116/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="karen">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="进阶">
     </span>
 
     
@@ -249,7 +252,127 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/15/my-first-article/" itemprop="url">my first article</a></h1>
+                <a class="post-title-link" href="/2017/11/16/1116/" itemprop="url">1116</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-16T11:13:03+08:00">
+                2017-11-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>了解<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Dubbo 分布式服务框架 远程服务调用</span><br><span class="line">Zookeeper 选举机制 paxos算法</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/15/my-first-article/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="karen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="进阶">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/15/my-first-article/" itemprop="url">搭建步骤</a></h1>
         
 
         <div class="post-meta">
@@ -301,7 +424,7 @@
       
         
           
-            <p>搭建步骤(记录一下)</p>
+            <p>记录一下:)</p>
 <ol>
 <li>前提：本地 node git 环境</li>
 <li>安装hexo – 打开终端，输入 sudo npm install -g hexo </li>
@@ -311,15 +434,19 @@
 <li>开启服务 – hexo server 本地监听 localhost:4000</li>
 <li>远程创建repository – your_user_name.github.io (与github用户名一致)</li>
 <li>安装git部署器 – npm install hexo-deployer-git –save</li>
-<li>修改配置文件 – 打开_config.yml 在文件末尾修改<br>deploy<br>type: git<br>repo: 你的repository地址 如 <a href="https://github.com/xxx/xxx.github.io.git" target="_blank" rel="external">https://github.com/xxx/xxx.github.io.git</a><br>branch: master<ol>
+<li>修改配置文件 – 打开_config.yml 在文件末尾修改<pre><code>deploy
+type: git 
+repo: 你的repository地址 
+      如 https://github.com/xxx/xxx.github.io.git
+branch: master
+</code></pre></li>
 <li>部署 – hexo deploy</li>
 <li>效果 – 打开网站 <a href="https://xxx.github.io" target="_blank" rel="external">https://xxx.github.io</a></li>
 <li>发表文章 – hexo new ‘文章名’</li>
 <li>编辑完，重新生成并部署 – hexo clean hexo g hexo d</li>
-</ol>
+<li>hexo在hexo目录下执行<br>hexo命令缩写     <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo g(generate) </span><br><span class="line">hexo d(deploy) </span><br><span class="line">hexo s(server) </span><br><span class="line">hexo n(new)</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>注意: hexo在hexo目录下执行<br>      hexo命令缩写 hexo g(generate) hexo d(deploy) hexo s(server) hexo n(new)</p>
 
           
         
@@ -371,13 +498,13 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/15/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="karen">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="进阶">
     </span>
 
     
@@ -518,8 +645,8 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">John Doe</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-author-name" itemprop="name">karen</p>
+              <p class="site-description motion-element" itemprop="description">进阶路上</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -529,7 +656,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">Artikel</span>
                 </a>
               </div>
@@ -583,7 +710,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">karen</span>
 
   
 </div>
