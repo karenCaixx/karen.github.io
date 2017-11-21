@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-11-16T03:18:21.000Z</updated>
+  <updated>2017-11-21T09:32:25.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,13 +17,55 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>1121</title>
+    <link href="http://yoursite.com/2017/11/21/1121/"/>
+    <id>http://yoursite.com/2017/11/21/1121/</id>
+    <published>2017-11-21T09:26:02.000Z</published>
+    <updated>2017-11-21T09:32:25.000Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">得过且过</span><br><span class="line">感觉有点漫无目的</span><br><span class="line">给自己定的小目标也没有落实</span><br><span class="line">毫无头绪，不知道从何开头</span><br><span class="line">胡思乱想 乱七八糟的</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>create a plugin</title>
+    <link href="http://yoursite.com/2017/11/17/create-a-plugin/"/>
+    <id>http://yoursite.com/2017/11/17/create-a-plugin/</id>
+    <published>2017-11-17T06:39:10.000Z</published>
+    <updated>2017-11-17T08:46:48.000Z</updated>
+    
+    <content type="html"><![CDATA[<iframe scrolling="no" width="100%" height="300" src="//jsfiddle.net/AntBody/138zf8kk/embedded/js,html,css,result/dark" frameborder="0" allowfullscreen></iframe>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;iframe scrolling=&quot;no&quot; width=&quot;100%&quot; height=&quot;300&quot; src=&quot;//jsfiddle.net/AntBody/138zf8kk/embedded/js,html,css,result/dark&quot; frameborder=&quot;0&quot; allo
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>1116</title>
     <link href="http://yoursite.com/2017/11/16/1116/"/>
     <id>http://yoursite.com/2017/11/16/1116/</id>
     <published>2017-11-16T03:13:03.000Z</published>
-    <updated>2017-11-16T03:18:21.000Z</updated>
+    <updated>2017-11-16T07:36:05.000Z</updated>
     
-    <content type="html"><![CDATA[<p>了解<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Dubbo 分布式服务框架 远程服务调用</span><br><span class="line">Zookeeper 选举机制 paxos算法</span><br></pre></td></tr></table></figure></p>]]></content>
+    <content type="html"><![CDATA[<p>了解<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Dubbo 分布式服务框架 远程服务调用</span><br><span class="line">Zookeeper 选举机制 paxos算法</span><br></pre></td></tr></table></figure></p><p>最近小目标<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.JS、ES6</span><br><span class="line">2.插件编写</span><br><span class="line">3.css sprite雪碧图</span><br></pre></td></tr></table></figure></p>]]></content>
     
     <summary type="html">
     
