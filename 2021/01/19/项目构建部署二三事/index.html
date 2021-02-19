@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="进阶" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="今天的重点：vue-cli 构建部署 1运行命令 vue-cli-service build –target  指定不同的构建目标，默认为应用模式  应用模式   index.html 会带有注入的资源和 resource hint 第三方库会被分到一个独立包以便更好的缓存 小于 4kb 的静态资源会被内联在 JavaScript 中 public 中的静态资源会被复制到输出目录中，如dist">
+<meta property="og:type" content="article">
+<meta property="og:title" content="项目构建部署二三事">
+<meta property="og:url" content="http://yoursite.com/2021/01/19/%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA%E9%83%A8%E7%BD%B2%E4%BA%8C%E4%B8%89%E4%BA%8B/index.html">
+<meta property="og:site_name" content="进阶">
+<meta property="og:description" content="今天的重点：vue-cli 构建部署 1运行命令 vue-cli-service build –target  指定不同的构建目标，默认为应用模式  应用模式   index.html 会带有注入的资源和 resource hint 第三方库会被分到一个独立包以便更好的缓存 小于 4kb 的静态资源会被内联在 JavaScript 中 public 中的静态资源会被复制到输出目录中，如dist">
+<meta property="og:image" content="http://yoursite.com/img/lib-structure.png">
+<meta property="article:published_time" content="2021-01-19T11:07:27.000Z">
+<meta property="article:modified_time" content="2021-02-03T08:13:01.732Z">
+<meta property="article:author" content="karen">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/img/lib-structure.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/01/19/项目构建部署二三事/"/>
+
+
+
+
+
+  <title>项目构建部署二三事 | 进阶</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">进阶</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/19/%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA%E9%83%A8%E7%BD%B2%E4%BA%8C%E4%B8%89%E4%BA%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="karen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="进阶">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">项目构建部署二三事</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-01-19T19:07:27+08:00">
+                2021-01-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>今天的重点：vue-cli 构建部署</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">运行命令 vue-cli-service build</span><br></pre></td></tr></table></figure>
+<p><strong>–target</strong>  指定不同的构建目标，默认为应用模式</p>
+<blockquote>
+<p>应用模式</p>
+</blockquote>
+<ul>
+<li><strong>index.html</strong> 会带有注入的资源和 resource hint</li>
+<li>第三方库会被分到一个独立包以便更好的缓存</li>
+<li>小于 4kb 的静态资源会被内联在 JavaScript 中</li>
+<li><strong>public</strong> 中的静态资源会被复制到输出目录中，如dist</li>
+</ul>
+<p>打包后的文件结构</p>
+<blockquote>
+<p>库模式 –target lib</p>
+</blockquote>
+<p>打包后如下图<br><img src="/img/lib-structure.png" alt="图1"></p>
+<ul>
+<li>dist/lib.common.js：一个给打包器用的CommonJS包 (不幸的是，webpack目前还并没有支持ES modules输出格式的包)</li>
+<li>dist/lib.umd.js：一个直接给浏览器或AMD loader使用的UMD包</li>
+<li>dist/lib.umd.min.js：压缩后的UMD构建版本</li>
+<li>dist/lib.css：提取出来的CSS文件 (可以通过在 vue.config.js 中设置 css: { extract: false } 强制内联)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">部署， 这里举了几个我当前项目中运用到的情况</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>本地预览</strong><br>在本地预览生产环境构建最简单的方式就是使用一个Node.js静态文件服务器，例如serve</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install -g serve</span><br><span class="line"></span><br><span class="line"># -s 参数的意思是将其架设在SPA模式下</span><br><span class="line">serve -s dist</span><br></pre></td></tr></table></figure>
+<p>使用<strong>mode: history</strong>的router是无法搭配简单的静态文件服务器的，例如/goods/:id这样的路由将会返回404<br>上面提到的-s 模式正是解决了这个问题</p>
+<blockquote>
+<p>deploy.sh</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">git_url: xxx</span><br><span class="line">source_dir=dist</span><br><span class="line">dest=".deploy/master"</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 当发生错误时中止脚本</span></span><br><span class="line">set -e</span><br><span class="line"></span><br><span class="line">if [ ! -d $dest ]; then</span><br><span class="line">    git clone $git_url $dest --depth=1</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 记录现在的目录位置</span></span><br><span class="line">cur=`pwd`</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 进入git目录</span></span><br><span class="line">cd $dest</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> git checkout .</span></span><br><span class="line">git add .</span><br><span class="line">git stash</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> reset为线上最新版本</span></span><br><span class="line">git pull origin master</span><br><span class="line">git reset --hard origin/master</span><br><span class="line">    </span><br><span class="line"><span class="meta">#</span><span class="bash"> 然后再pull一下</span></span><br><span class="line">git pull origin master</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 回到原来的目录</span></span><br><span class="line">echo ---back</span><br><span class="line">cd $cur</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 构建</span></span><br><span class="line">echo +++run build script</span><br><span class="line">npm run build</span><br><span class="line">echo ---build end</span><br><span class="line"></span><br><span class="line">echo +++cpCode start</span><br><span class="line"><span class="meta">#</span><span class="bash"> 复制代码 , --exclude排除不需要传输的文件模式</span></span><br><span class="line">rsync -r --delete --exclude='.git' $source_dir/. $dest</span><br><span class="line">echo ---cpCode end</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">cd</span> 到构建输出的目录下</span></span><br><span class="line">cd $dest</span><br><span class="line"></span><br><span class="line">echo +++commit start</span><br><span class="line"><span class="meta">#</span><span class="bash"> 部署到自定义域名</span></span><br><span class="line">git add .</span><br><span class="line">git commit -m "commit in `date '+%Y-%m-%d %H:%M:%S'`"</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 部署到远程git</span></span><br><span class="line">git push origin master</span><br><span class="line">echo ---commit end</span><br><span class="line"></span><br><span class="line">cd -</span><br></pre></td></tr></table></figure>
+
+<p>deploy.sh做的事情是构建完自动部署提交到远程git</p>
+<blockquote>
+<p>docker</p>
+</blockquote>
+<blockquote>
+<p>参考文档：<a href="https://cli.vuejs.org/zh/guide/build-targets.html" target="_blank" rel="noopener">https://cli.vuejs.org/zh/guide/build-targets.html</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/01/13/ready-for-2021/" rel="next" title="ready for 2021">
+                <i class="fa fa-chevron-left"></i> ready for 2021
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/01/21/%E8%BF%9F%E5%88%B0%E7%9A%84vue-source-code-%E8%AE%B0%E5%BD%95/" rel="prev" title="迟到的vue source code 记录">
+                迟到的vue source code 记录 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">karen</p>
+              <p class="site-description motion-element" itemprop="description">在路上。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user-secret"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">karen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

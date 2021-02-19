@@ -83,12 +83,12 @@
 
 
 
-<meta name="description" content="###webpack初步理解 12345mkdir webpack-egcd webpack-egnpm initnpm start  ###提交二#关键词 12345678webpack-dev-server 代理source-map部署上线 webpack-prod.config.js分离app.js 和 第三方库vendor: [] &#x2F; filename: &#39;[name].">
+<meta name="description" content="###webpack初步理解12345mkdir webpack-egcd webpack-egnpm initnpm start ###提交二 #关键词12345678webpack-dev-server 代理source-map部署上线 webpack-prod.config.js分离app.js 和 第三方库vendor: [] &#x2F; filename: &amp;apos;[name].js&amp;apo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="webpack探路">
 <meta property="og:url" content="http://yoursite.com/2018/01/12/webpack%E6%8E%A2%E8%B7%AF/index.html">
 <meta property="og:site_name" content="进阶">
-<meta property="og:description" content="###webpack初步理解 12345mkdir webpack-egcd webpack-egnpm initnpm start  ###提交二#关键词 12345678webpack-dev-server 代理source-map部署上线 webpack-prod.config.js分离app.js 和 第三方库vendor: [] &#x2F; filename: &#39;[name].">
+<meta property="og:description" content="###webpack初步理解12345mkdir webpack-egcd webpack-egnpm initnpm start ###提交二 #关键词12345678webpack-dev-server 代理source-map部署上线 webpack-prod.config.js分离app.js 和 第三方库vendor: [] &#x2F; filename: &amp;apos;[name].js&amp;apo">
 <meta property="article:published_time" content="2018-01-12T05:54:08.000Z">
 <meta property="article:modified_time" content="2018-01-12T06:05:00.000Z">
 <meta property="article:author" content="karen">
@@ -302,18 +302,13 @@
       
 
       
-        <p>###webpack初步理解</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir webpack-eg</span><br><span class="line"><span class="built_in">cd</span> webpack-eg</span><br><span class="line">npm init</span><br><span class="line"></span><br><span class="line">npm start</span><br></pre></td></tr></table></figure>
-
-<p>###提交二<br>#关键词</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">webpack-dev-server 代理</span><br><span class="line">source-map</span><br><span class="line">部署上线 webpack-prod.config.js</span><br><span class="line">分离app.js 和 第三方库</span><br><span class="line">vendor: [] &#x2F; filename: &#39;[name].js&#39;</span><br><span class="line">uglifyJs CommonsChunkPlugin</span><br><span class="line">babel-loader</span><br><span class="line">npm run build</span><br></pre></td></tr></table></figure>
-
-<p>###提交三<br>#关键词</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">生成多页面</span><br><span class="line">多入口</span><br><span class="line">templates	index.html &#x2F; mobile.html</span><br><span class="line">生成hash名称的script 来防止缓存</span><br><span class="line">output filename: [name].[hash].js</span><br></pre></td></tr></table></figure>
-
-<p>###提交四<br>#关键词</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">start命令指定 webpack.dev.js</span><br><span class="line">区分生产环境和开发环境 </span><br><span class="line">保留通用配置 webpack.common.js</span><br><span class="line">webpack-merge</span><br></pre></td></tr></table></figure>
-
+        <p>###webpack初步理解<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir webpack-eg</span><br><span class="line"><span class="built_in">cd</span> webpack-eg</span><br><span class="line">npm init</span><br><span class="line"></span><br><span class="line">npm start</span><br></pre></td></tr></table></figure></p>
+<p>###提交二</p>
+<p>#关键词<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">webpack-dev-server 代理</span><br><span class="line">source-map</span><br><span class="line">部署上线 webpack-prod.config.js</span><br><span class="line">分离app.js 和 第三方库</span><br><span class="line">vendor: [] / filename: &apos;[name].js&apos;</span><br><span class="line">uglifyJs CommonsChunkPlugin</span><br><span class="line">babel-loader</span><br><span class="line">npm run build</span><br></pre></td></tr></table></figure></p>
+<p>###提交三</p>
+<p>#关键词<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">生成多页面</span><br><span class="line">多入口</span><br><span class="line">templates	index.html / mobile.html</span><br><span class="line">生成hash名称的script 来防止缓存</span><br><span class="line">output filename: [name].[hash].js</span><br></pre></td></tr></table></figure></p>
+<p>###提交四</p>
+<p>#关键词<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">start命令指定 webpack.dev.js</span><br><span class="line">区分生产环境和开发环境 </span><br><span class="line">保留通用配置 webpack.common.js</span><br><span class="line">webpack-merge</span><br></pre></td></tr></table></figure></p>
 <p>具体代码移步–<a href="https://github.com/karencxx/webpack-demo.git" target="_blank" rel="noopener">https://github.com/karencxx/webpack-demo.git</a></p>
 
       
@@ -419,7 +414,7 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

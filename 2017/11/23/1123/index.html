@@ -83,12 +83,12 @@
 
 
 
-<meta name="description" content="Express安装记录 1前提 -- node环境 12mkdir myapp -- 创建工作目录cd myapp -- 进入 1npm init -- 初始化package.json，依次enter键就好了，但注意entry point所指向的文件(在此命名为app.js) 12npm install express --save --安装expressnpm install express -">
+<meta name="description" content="Express安装记录1前提 -- node环境 12mkdir myapp -- 创建工作目录cd myapp -- 进入 1npm init -- 初始化package.json，依次enter键就好了，但注意entry point所指向的文件(在此命名为app.js) 12npm install express --save --安装expressnpm install express --">
 <meta property="og:type" content="article">
 <meta property="og:title" content="1123">
 <meta property="og:url" content="http://yoursite.com/2017/11/23/1123/index.html">
 <meta property="og:site_name" content="进阶">
-<meta property="og:description" content="Express安装记录 1前提 -- node环境 12mkdir myapp -- 创建工作目录cd myapp -- 进入 1npm init -- 初始化package.json，依次enter键就好了，但注意entry point所指向的文件(在此命名为app.js) 12npm install express --save --安装expressnpm install express -">
+<meta property="og:description" content="Express安装记录1前提 -- node环境 12mkdir myapp -- 创建工作目录cd myapp -- 进入 1npm init -- 初始化package.json，依次enter键就好了，但注意entry point所指向的文件(在此命名为app.js) 12npm install express --save --安装expressnpm install express --">
 <meta property="article:published_time" content="2017-11-23T02:57:57.000Z">
 <meta property="article:modified_time" content="2017-11-23T03:12:15.000Z">
 <meta property="article:author" content="karen">
@@ -302,20 +302,16 @@
       
 
       
-        <p>Express安装记录</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">前提 -- node环境</span><br></pre></td></tr></table></figure>
+        <p>Express安装记录<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">前提 -- node环境</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir myapp -- 创建工作目录</span><br><span class="line">cd myapp -- 进入</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init -- 初始化package.json，依次enter键就好了，但注意entry point所指向的文件(在此命名为app.js)</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install express --save --安装express</span><br><span class="line">npm install express -- 临时安装</span><br></pre></td></tr></table></figure>
-
-<p>入门第一步 – hello world</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd myapp -- 进入myapp目录，创建app.js</span><br></pre></td></tr></table></figure>
-<p>输入代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var express &#x3D; require(&#39;express&#39;)</span><br><span class="line">var app &#x3D; express()</span><br><span class="line"></span><br><span class="line">app.get(&#39;&#x2F;&#39;, function(req, res)&#123;</span><br><span class="line">	res.send(&#39;Hello World&#39;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">var server &#x3D; app.listen(3000, function()&#123;</span><br><span class="line">	var host &#x3D; server.address().address</span><br><span class="line">	var host &#x3D; server.address().port</span><br><span class="line">	console.log(&#39;Example app listening at http:&#x2F;&#x2F;%s:%s&#39;, host, port)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">* 代码解释: 启动一个服务并监听从3000端口进入的所有连接服务。他将对所有(&#x2F;)URL或路由返回&#39;Hello World&#39;的字符串</span><br><span class="line">			对其他路径返回404</span><br></pre></td></tr></table></figure>
-
+<p>入门第一步 – hello world<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd myapp -- 进入myapp目录，创建app.js</span><br></pre></td></tr></table></figure></p>
+<p>输入代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var express = require(&apos;express&apos;)</span><br><span class="line">var app = express()</span><br><span class="line"></span><br><span class="line">app.get(&apos;/&apos;, function(req, res)&#123;</span><br><span class="line">	res.send(&apos;Hello World&apos;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">var server = app.listen(3000, function()&#123;</span><br><span class="line">	var host = server.address().address</span><br><span class="line">	var host = server.address().port</span><br><span class="line">	console.log(&apos;Example app listening at http://%s:%s&apos;, host, port)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">* 代码解释: 启动一个服务并监听从3000端口进入的所有连接服务。他将对所有(/)URL或路由返回&apos;Hello World&apos;的字符串</span><br><span class="line">			对其他路径返回404</span><br></pre></td></tr></table></figure>
 <p>启动应用</p>
-<pre><code class="base">    node app.js</code></pre>
+<pre><code class="base">node app.js
+</code></pre>
 
       
     </div>
@@ -420,7 +416,7 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
