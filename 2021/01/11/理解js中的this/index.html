@@ -1,37 +1,264 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+  <!-- Minima -->
+  <!-- Hexo theme created by @adisaktijrs -->
 
-{% block page_class %}page-post-detail{% endblock %}
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
 
+  
+  <title>javascript中的this作用域</title>
+  
+  <link rel="sitemap" href="http://yoursite.comsitemap.xml" />
+  
+  <link rel="canonical" href="http://yoursite.com/2021/01/11/%E7%90%86%E8%A7%A3js%E4%B8%AD%E7%9A%84this/">
+  
+  <meta name="description" content="对于this作用域，是每次面试基本必问的，对其理解模糊的话很容易栽倒在它的陷阱里  首先了解下执行上下文  执行该行代码时的环境（或范围），简单点就是谁调用了函数  大概有一下四种情况全局环境下或普通函数中直接调用   默认情况下，执行上下文指向全局  12345this.a = 1var b = ">
+  
+  
+  <meta name="author" content="karen">
+  
+  <meta property="og:image" content="http://yoursite.comundefined">
+  
+  <meta property="og:site_name" content="进阶" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="javascript中的this作用域" />
+  
+  <meta property="og:description" content="对于this作用域，是每次面试基本必问的，对其理解模糊的话很容易栽倒在它的陷阱里  首先了解下执行上下文  执行该行代码时的环境（或范围），简单点就是谁调用了函数  大概有一下四种情况全局环境下或普通函数中直接调用   默认情况下，执行上下文指向全局  12345this.a = 1var b = ">
+  
+  <meta property="og:url" content="http://yoursite.com/2021/01/11/%E7%90%86%E8%A7%A3js%E4%B8%AD%E7%9A%84this/" />
 
-{% block content %}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="javascript中的this作用域">
+  
+  <meta name="twitter:description" content="对于this作用域，是每次面试基本必问的，对其理解模糊的话很容易栽倒在它的陷阱里  首先了解下执行上下文  执行该行代码时的环境（或范围），简单点就是谁调用了函数  大概有一下四种情况全局环境下或普通函数中直接调用   默认情况下，执行上下文指向全局  12345this.a = 1var b = ">
+  
+  
+  <meta name="twitter:image" content="http://yoursite.comundefined">
+  
+  <meta name="twitter:url" content="http://yoursite.com/2021/01/11/%E7%90%86%E8%A7%A3js%E4%B8%AD%E7%9A%84this/" />
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
-    </div>
+  <!-- Preload fonts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="preload" href="../fonts/dm-serif-display-v4-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/inter-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+<link rel="stylesheet" href="/css/normalize.css">
+
+  
+<link rel="stylesheet" href="/css/skeleton.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+<link rel="stylesheet" href="/css/prism-dark.css">
+
+  
+<link rel="stylesheet" href="/css/prism-line-numbers.css">
+
+  <!-- User css -->
+  
+  
+<link rel="stylesheet" href="/css/user.css">
+
+  
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+
+  <!-- Custom Theme Color Style
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <style>
+  a:not(.icon) {
+    text-decoration-color: #0FA0CE;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 50%,
+      #0FA0CE 50%
+    );
+  }
+  blockquote {
+    border-left: 8px solid #0FA0CE;
+  }
+  .nanobar .bar {
+    background: #0FA0CE;
+  }
+  .button.button-primary:hover,
+  button.button-primary:hover,
+  input[type="submit"].button-primary:hover,
+  input[type="reset"].button-primary:hover,
+  input[type="button"].button-primary:hover,
+  .button.button-primary:focus,
+  button.button-primary:focus,
+  input[type="submit"].button-primary:focus,
+  input[type="reset"].button-primary:focus,
+  input[type="button"].button-primary:focus {
+    background-color: #0FA0CE;
+    border-color: #0FA0CE;
+  }
+  input[type="email"]:focus,
+  input[type="number"]:focus,
+  input[type="search"]:focus,
+  input[type="text"]:focus,
+  input[type="tel"]:focus,
+  input[type="url"]:focus,
+  input[type="password"]:focus,
+  textarea:focus,
+  select:focus {
+    border: 1px solid #0FA0CE;
+  }
+</style>
+
+  <!-- Google Analytics (With Privacy Settings On)
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+
+<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="进阶" type="application/atom+xml">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div>
+
+        <div class="row">
+  <div class="two columns" style="max-width: 50px">
+    <h1 class="mt-2 mode">
+      <div onclick=setDarkMode(true) id="darkBtn">🌑</div>
+      <div onclick=setDarkMode(false) id="lightBtn" class=hidden>☀️</div>
+      <script >
+        if (localStorage.getItem('preferredTheme') == 'dark') {
+          setDarkMode(true)
+        }
+        function setDarkMode(isDark) {
+          var darkBtn = document.getElementById('darkBtn')
+          var lightBtn = document.getElementById('lightBtn')
+          if (isDark) {
+            lightBtn.style.display = "block"
+            darkBtn.style.display = "none"
+            localStorage.setItem('preferredTheme', 'dark');
+          } else {
+            lightBtn.style.display = "none"
+            darkBtn.style.display = "block"
+            localStorage.removeItem('preferredTheme');
+          }
+          document.body.classList.toggle("darkmode");
+        }
+      </script>
+    </h1>
   </div>
 
-{% endblock %}
+  <div class="six columns ml-1">
+    <h1 class="mt-2">
+      UP&amp;UP
+    </h1>
+  </div>
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+  <div class="twelve columns">
+    <div class="row">
+      <div class="nine columns left">
+        <a href="/">Home</a>
+        
+        
+      </div>
+    </div>
+    <hr style="margin-bottom: 2.6rem">
+  </div>
+</div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+        <div class="trans">
+            <h2>javascript中的this作用域</h2>
+
+  <p>对于<strong>this</strong>作用域，是每次面试基本必问的，对其理解模糊的话很容易栽倒在它的陷阱里</p>
+<blockquote>
+<p>首先了解下执行上下文</p>
+</blockquote>
+<p><strong>执行该行代码时的环境（或范围），简单点就是谁调用了函数</strong></p>
+<blockquote>
+<p>大概有一下四种情况<br>全局环境下或普通函数中直接调用</p>
+</blockquote>
+<ul>
+<li><strong>默认情况下，执行上下文指向全局</strong></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.a = <span class="number">1</span></span><br><span class="line"><span class="keyword">var</span> b = <span class="number">2</span> </span><br><span class="line">c = <span class="number">1</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">this</span> === <span class="built_in">window</span>) <span class="comment">// true</span></span><br><span class="line"><span class="comment">// a,b,c都能在全局上下文中找到</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span> === <span class="built_in">window</span>) <span class="comment">// true</span></span><br><span class="line">&#125;</span><br><span class="line">foo()</span><br></pre></td></tr></table></figure>
+<p>这里可以看成<strong>window.foo()</strong> ，即this === window</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">buy</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> name = <span class="string">&#x27;nanjing&#x27;</span></span><br><span class="line"><span class="keyword">var</span> obj1 = &#123;<span class="attr">name</span>: <span class="string">&#x27;da&#x27;</span>, <span class="attr">buy</span>: buy&#125;</span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;<span class="attr">name</span>: <span class="string">&#x27;baozi&#x27;</span>, <span class="attr">buy</span>: buy&#125;</span><br><span class="line"></span><br><span class="line">buy()</span><br><span class="line">obj1.buy()</span><br><span class="line">obj2.buy()</span><br></pre></td></tr></table></figure>
+<p>obj1.buy()从字面上来理解就是obj1调用了函数，即<strong>当前函数中的this指向obj1</strong></p>
+<ul>
+<li><strong>严格模式下，this指向undefined</strong><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="meta">    &#x27;use strict&#x27;</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span> === <span class="built_in">window</span>) <span class="comment">// false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><strong>显式绑定</strong><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bike</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> name = <span class="string">&#x27;nanjing&#x27;</span></span><br><span class="line"><span class="keyword">var</span> obj1 = &#123;<span class="attr">name</span>: <span class="string">&#x27;da&#x27;</span>, <span class="attr">bike</span>: bike&#125;</span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;<span class="attr">name</span>: <span class="string">&#x27;baozi&#x27;</span>, <span class="attr">bike</span>: bike&#125;</span><br><span class="line"></span><br><span class="line">bike() <span class="comment">// nanjing</span></span><br><span class="line">obj1.bike() <span class="comment">// da</span></span><br><span class="line">obj2.bike() <span class="comment">// baozi</span></span><br></pre></td></tr></table></figure>
+bike虽然是个普通函数，单独输出时他的this指向了全局对象，<br>但在obj1，obj2中，他作为属性的值，由于是obj1，obj2去调用了bike方法，this显然就指向了obj1，obj2</li>
+</ul>
+<p>如果我们稍作修改，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">var</span> obj3 = &#123;<span class="attr">name</span>: <span class="string">&#x27;来了&#x27;</span>, <span class="attr">bike</span>: bike&#125;</span><br><span class="line"><span class="keyword">var</span> obj4 = obj3.bike</span><br><span class="line">obj4() <span class="comment">// nanjing</span></span><br></pre></td></tr></table></figure>
+<p>此时又变成了window去调用了o()，怎么理解呢？<br>当将obj3.bike赋值给obj4时，其实obj4只存储了指向bike函数的指针<br>而bike函数是存储在全局对象中的，this指向全局，因此执行obj4()就等于直接调用bike()</p>
+<ul>
+<li><strong>使用apply、call、bind手动修改指向</strong><br>apply / call / bind这三者的区别<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> person = &#123; <span class="attr">name</span>: <span class="string">&#x27;Lydia&#x27;</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHi</span>(<span class="params">age</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;<span class="built_in">this</span>.name&#125;</span> is <span class="subst">$&#123;age&#125;</span>`</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(sayHi.call(person, <span class="number">21</span>));</span><br><span class="line"><span class="built_in">console</span>.log(sayHi.bind(person, <span class="number">21</span>));</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bike</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.name)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> name = <span class="string">&#x27;ninja&#x27;</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123; <span class="attr">name</span>: <span class="string">&#x27;baozi&#x27;</span> &#125;</span><br><span class="line"></span><br><span class="line">bike() <span class="comment">// ninja</span></span><br><span class="line">bike.call(obj) <span class="comment">// baozi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj1 = &#123; <span class="attr">name</span>: <span class="string">&#x27;dabaozi&#x27;</span> &#125;</span><br><span class="line"><span class="keyword">var</span> originalBikeFun = bike</span><br><span class="line">bike = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    originalBikeFun.call(obj1)</span><br><span class="line">&#125;</span><br><span class="line">bike() <span class="comment">// dabaozi</span></span><br></pre></td></tr></table></figure></li>
+<li><strong>作为构造函数，使用new</strong><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bunny</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name = <span class="string">&#x27;ninja&#x27;</span></span><br><span class="line">    <span class="built_in">this</span>.maker = <span class="string">&#x27;huasan&#x27;</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.name + <span class="string">&#x27;_&#x27;</span> + maker)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> name = <span class="string">&#x27;feisi&#x27;</span></span><br><span class="line"><span class="keyword">var</span> maker = <span class="string">&#x27;tuzi&#x27;</span></span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> bunny()</span><br><span class="line"><span class="built_in">console</span>.log(obj.maker, <span class="string">&#x27;obj.maker&#x27;</span>)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>ES6箭头函数是个特例，他会捕获其所在上下文的this值，白话点说就是他看的是周边的this指向哪里</strong></p>
+
+  <p> — Jan 11, 2021</p>
+  
+
+
+          <div class="row mt-2">
+  
+    <div class="eight columns">
+      <p id="madewith">Made with ❤ and
+        <a class="footer-link icon" href="https://hexo.io" target="_blank" style="text-decoration: none;" rel="noreferrer" aria-label="Hexo.io">
+        <svg class="hexo svg-hov" width="14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Hexo.js</title><path d="M12 .007L1.57 6.056V18.05L12 23.995l10.43-6.049V5.952L12 .007zm4.798 17.105l-.939.521-.939-.521V12.94H9.08v4.172l-.94.521-.938-.521V6.89l.939-.521.939.521v4.172h5.84V6.89l.94-.521.938.521v10.222z"/></svg>
+        </a>
+        
+    </div>
+
+    <!-- Sepcial thanks to https://simpleicons.org/ for the icons -->
+    <div class="four columns mb-3 posisi" >
+      
+
+      
+
+      
+
+      
+
+    </div>
+  
+</div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <script src="/js/nanobar.min.js"></script>
+  <script>
+    var options = {
+      classname: 'nanobar',
+      id: 'myNanobar'
+    };
+    var nanobar = new Nanobar(options);
+    nanobar.go(30);
+    nanobar.go(76);
+    nanobar.go(100);
+  </script>
+
+</body>
+
+</html>

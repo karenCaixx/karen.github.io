@@ -1,37 +1,274 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+  <!-- Minima -->
+  <!-- Hexo theme created by @adisaktijrs -->
 
-{% block page_class %}page-post-detail{% endblock %}
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
 
+  
+  <title>项目构建部署二三事</title>
+  
+  <link rel="sitemap" href="http://yoursite.comsitemap.xml" />
+  
+  <link rel="canonical" href="http://yoursite.com/2021/01/19/%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA%E9%83%A8%E7%BD%B2%E4%BA%8C%E4%B8%89%E4%BA%8B/">
+  
+  <meta name="description" content="今天的重点：vue-cli 构建部署 1运行命令 vue-cli-service build –target  指定不同的构建目标，默认为应用模式  应用模式   index.html 会带有注入的资源和 resource hint 第三方库会被分到一个独立包以便更好的缓存 小于 4kb 的静态资源">
+  
+  
+  <meta name="author" content="karen">
+  
+  <meta property="og:image" content="http://yoursite.comundefined">
+  
+  <meta property="og:site_name" content="进阶" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="项目构建部署二三事" />
+  
+  <meta property="og:description" content="今天的重点：vue-cli 构建部署 1运行命令 vue-cli-service build –target  指定不同的构建目标，默认为应用模式  应用模式   index.html 会带有注入的资源和 resource hint 第三方库会被分到一个独立包以便更好的缓存 小于 4kb 的静态资源">
+  
+  <meta property="og:url" content="http://yoursite.com/2021/01/19/%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA%E9%83%A8%E7%BD%B2%E4%BA%8C%E4%B8%89%E4%BA%8B/" />
 
-{% block content %}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="项目构建部署二三事">
+  
+  <meta name="twitter:description" content="今天的重点：vue-cli 构建部署 1运行命令 vue-cli-service build –target  指定不同的构建目标，默认为应用模式  应用模式   index.html 会带有注入的资源和 resource hint 第三方库会被分到一个独立包以便更好的缓存 小于 4kb 的静态资源">
+  
+  
+  <meta name="twitter:image" content="http://yoursite.comundefined">
+  
+  <meta name="twitter:url" content="http://yoursite.com/2021/01/19/%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA%E9%83%A8%E7%BD%B2%E4%BA%8C%E4%B8%89%E4%BA%8B/" />
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
-    </div>
+  <!-- Preload fonts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="preload" href="../fonts/dm-serif-display-v4-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/inter-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+<link rel="stylesheet" href="/css/normalize.css">
+
+  
+<link rel="stylesheet" href="/css/skeleton.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+<link rel="stylesheet" href="/css/prism-dark.css">
+
+  
+<link rel="stylesheet" href="/css/prism-line-numbers.css">
+
+  <!-- User css -->
+  
+  
+<link rel="stylesheet" href="/css/user.css">
+
+  
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+
+  <!-- Custom Theme Color Style
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <style>
+  a:not(.icon) {
+    text-decoration-color: #0FA0CE;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 50%,
+      #0FA0CE 50%
+    );
+  }
+  blockquote {
+    border-left: 8px solid #0FA0CE;
+  }
+  .nanobar .bar {
+    background: #0FA0CE;
+  }
+  .button.button-primary:hover,
+  button.button-primary:hover,
+  input[type="submit"].button-primary:hover,
+  input[type="reset"].button-primary:hover,
+  input[type="button"].button-primary:hover,
+  .button.button-primary:focus,
+  button.button-primary:focus,
+  input[type="submit"].button-primary:focus,
+  input[type="reset"].button-primary:focus,
+  input[type="button"].button-primary:focus {
+    background-color: #0FA0CE;
+    border-color: #0FA0CE;
+  }
+  input[type="email"]:focus,
+  input[type="number"]:focus,
+  input[type="search"]:focus,
+  input[type="text"]:focus,
+  input[type="tel"]:focus,
+  input[type="url"]:focus,
+  input[type="password"]:focus,
+  textarea:focus,
+  select:focus {
+    border: 1px solid #0FA0CE;
+  }
+</style>
+
+  <!-- Google Analytics (With Privacy Settings On)
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+
+<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="进阶" type="application/atom+xml">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div>
+
+        <div class="row">
+  <div class="two columns" style="max-width: 50px">
+    <h1 class="mt-2 mode">
+      <div onclick=setDarkMode(true) id="darkBtn">🌑</div>
+      <div onclick=setDarkMode(false) id="lightBtn" class=hidden>☀️</div>
+      <script >
+        if (localStorage.getItem('preferredTheme') == 'dark') {
+          setDarkMode(true)
+        }
+        function setDarkMode(isDark) {
+          var darkBtn = document.getElementById('darkBtn')
+          var lightBtn = document.getElementById('lightBtn')
+          if (isDark) {
+            lightBtn.style.display = "block"
+            darkBtn.style.display = "none"
+            localStorage.setItem('preferredTheme', 'dark');
+          } else {
+            lightBtn.style.display = "none"
+            darkBtn.style.display = "block"
+            localStorage.removeItem('preferredTheme');
+          }
+          document.body.classList.toggle("darkmode");
+        }
+      </script>
+    </h1>
   </div>
 
-{% endblock %}
+  <div class="six columns ml-1">
+    <h1 class="mt-2">
+      UP&amp;UP
+    </h1>
+  </div>
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+  <div class="twelve columns">
+    <div class="row">
+      <div class="nine columns left">
+        <a href="/">Home</a>
+        
+        
+      </div>
+    </div>
+    <hr style="margin-bottom: 2.6rem">
+  </div>
+</div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+        <div class="trans">
+            <h2>项目构建部署二三事</h2>
+
+  <p><strong>今天的重点：vue-cli 构建部署</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">运行命令 vue-cli-service build</span><br></pre></td></tr></table></figure>
+<p><strong>–target</strong>  指定不同的构建目标，默认为应用模式</p>
+<blockquote>
+<p>应用模式</p>
+</blockquote>
+<ul>
+<li><strong>index.html</strong> 会带有注入的资源和 resource hint</li>
+<li>第三方库会被分到一个独立包以便更好的缓存</li>
+<li>小于 4kb 的静态资源会被内联在 JavaScript 中</li>
+<li><strong>public</strong> 中的静态资源会被复制到输出目录中，如dist</li>
+</ul>
+<p>打包后的文件结构</p>
+<blockquote>
+<p>库模式 –target lib</p>
+</blockquote>
+<p>打包后如下图<br><img src="/img/lib-structure.png" alt="图1"></p>
+<ul>
+<li>dist/lib.common.js：一个给打包器用的CommonJS包 (不幸的是，webpack目前还并没有支持ES modules输出格式的包)</li>
+<li>dist/lib.umd.js：一个直接给浏览器或AMD loader使用的UMD包</li>
+<li>dist/lib.umd.min.js：压缩后的UMD构建版本</li>
+<li>dist/lib.css：提取出来的CSS文件 (可以通过在 vue.config.js 中设置 css: { extract: false } 强制内联)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">部署， 这里举了几个我当前项目中运用到的情况</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>本地预览</strong><br>在本地预览生产环境构建最简单的方式就是使用一个Node.js静态文件服务器，例如serve</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install -g serve</span><br><span class="line"></span><br><span class="line"># -s 参数的意思是将其架设在SPA模式下</span><br><span class="line">serve -s dist</span><br></pre></td></tr></table></figure>
+<p>使用<strong>mode: history</strong>的router是无法搭配简单的静态文件服务器的，例如/goods/:id这样的路由将会返回404<br>上面提到的-s 模式正是解决了这个问题</p>
+<blockquote>
+<p>deploy.sh</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">git_url: xxx</span><br><span class="line">source_dir=dist</span><br><span class="line">dest=&quot;.deploy/master&quot;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 当发生错误时中止脚本</span></span><br><span class="line">set -e</span><br><span class="line"></span><br><span class="line">if [ ! -d $dest ]; then</span><br><span class="line">    git clone $git_url $dest --depth=1</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 记录现在的目录位置</span></span><br><span class="line">cur=`pwd`</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 进入git目录</span></span><br><span class="line">cd $dest</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> git checkout .</span></span><br><span class="line">git add .</span><br><span class="line">git stash</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> reset为线上最新版本</span></span><br><span class="line">git pull origin master</span><br><span class="line">git reset --hard origin/master</span><br><span class="line">    </span><br><span class="line"><span class="meta">#</span><span class="bash"> 然后再pull一下</span></span><br><span class="line">git pull origin master</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 回到原来的目录</span></span><br><span class="line">echo ---back</span><br><span class="line">cd $cur</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 构建</span></span><br><span class="line">echo +++run build script</span><br><span class="line">npm run build</span><br><span class="line">echo ---build end</span><br><span class="line"></span><br><span class="line">echo +++cpCode start</span><br><span class="line"><span class="meta">#</span><span class="bash"> 复制代码 , --exclude排除不需要传输的文件模式</span></span><br><span class="line">rsync -r --delete --exclude=&#x27;.git&#x27; $source_dir/. $dest</span><br><span class="line">echo ---cpCode end</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">cd</span> 到构建输出的目录下</span></span><br><span class="line">cd $dest</span><br><span class="line"></span><br><span class="line">echo +++commit start</span><br><span class="line"><span class="meta">#</span><span class="bash"> 部署到自定义域名</span></span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;commit in `date &#x27;+%Y-%m-%d %H:%M:%S&#x27;`&quot;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 部署到远程git</span></span><br><span class="line">git push origin master</span><br><span class="line">echo ---commit end</span><br><span class="line"></span><br><span class="line">cd -</span><br></pre></td></tr></table></figure>
+<p>deploy.sh做的事情是构建完自动部署提交到远程git</p>
+<blockquote>
+<p>docker</p>
+</blockquote>
+<blockquote>
+<p>参考文档：<a target="_blank" rel="noopener" href="https://cli.vuejs.org/zh/guide/build-targets.html">https://cli.vuejs.org/zh/guide/build-targets.html</a></p>
+</blockquote>
+
+  <p> — Jan 19, 2021</p>
+  
+
+
+          <div class="row mt-2">
+  
+    <div class="eight columns">
+      <p id="madewith">Made with ❤ and
+        <a class="footer-link icon" href="https://hexo.io" target="_blank" style="text-decoration: none;" rel="noreferrer" aria-label="Hexo.io">
+        <svg class="hexo svg-hov" width="14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Hexo.js</title><path d="M12 .007L1.57 6.056V18.05L12 23.995l10.43-6.049V5.952L12 .007zm4.798 17.105l-.939.521-.939-.521V12.94H9.08v4.172l-.94.521-.938-.521V6.89l.939-.521.939.521v4.172h5.84V6.89l.94-.521.938.521v10.222z"/></svg>
+        </a>
+        
+    </div>
+
+    <!-- Sepcial thanks to https://simpleicons.org/ for the icons -->
+    <div class="four columns mb-3 posisi" >
+      
+
+      
+
+      
+
+      
+
+    </div>
+  
+</div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <script src="/js/nanobar.min.js"></script>
+  <script>
+    var options = {
+      classname: 'nanobar',
+      id: 'myNanobar'
+    };
+    var nanobar = new Nanobar(options);
+    nanobar.go(30);
+    nanobar.go(76);
+    nanobar.go(100);
+  </script>
+
+</body>
+
+</html>

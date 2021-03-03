@@ -1,37 +1,278 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+  <!-- Minima -->
+  <!-- Hexo theme created by @adisaktijrs -->
 
-{% block page_class %}page-post-detail{% endblock %}
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
 
+  
+  <title>在note上添加上vue-router</title>
+  
+  <link rel="sitemap" href="http://yoursite.comsitemap.xml" />
+  
+  <link rel="canonical" href="http://yoursite.com/2017/12/13/vue-router/">
+  
+  <meta name="description" content="把note项目改造了一下，采用路由的方式单页面应用 记录一下1234567891011在src下新建文件夹router在main.js中import router from &amp;#x27;./router&amp;#x27;import Vue from &amp;#x27;vue&amp;#x27;Vue.use(rout">
+  
+  
+  <meta name="author" content="karen">
+  
+  <meta property="og:image" content="http://yoursite.comundefined">
+  
+  <meta property="og:site_name" content="进阶" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="在note上添加上vue-router" />
+  
+  <meta property="og:description" content="把note项目改造了一下，采用路由的方式单页面应用 记录一下1234567891011在src下新建文件夹router在main.js中import router from &amp;#x27;./router&amp;#x27;import Vue from &amp;#x27;vue&amp;#x27;Vue.use(rout">
+  
+  <meta property="og:url" content="http://yoursite.com/2017/12/13/vue-router/" />
 
-{% block content %}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="在note上添加上vue-router">
+  
+  <meta name="twitter:description" content="把note项目改造了一下，采用路由的方式单页面应用 记录一下1234567891011在src下新建文件夹router在main.js中import router from &amp;#x27;./router&amp;#x27;import Vue from &amp;#x27;vue&amp;#x27;Vue.use(rout">
+  
+  
+  <meta name="twitter:image" content="http://yoursite.comundefined">
+  
+  <meta name="twitter:url" content="http://yoursite.com/2017/12/13/vue-router/" />
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
-    </div>
+  <!-- Preload fonts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="preload" href="../fonts/dm-serif-display-v4-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/inter-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+<link rel="stylesheet" href="/css/normalize.css">
+
+  
+<link rel="stylesheet" href="/css/skeleton.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+<link rel="stylesheet" href="/css/prism-dark.css">
+
+  
+<link rel="stylesheet" href="/css/prism-line-numbers.css">
+
+  <!-- User css -->
+  
+  
+<link rel="stylesheet" href="/css/user.css">
+
+  
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+
+  <!-- Custom Theme Color Style
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <style>
+  a:not(.icon) {
+    text-decoration-color: #0FA0CE;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 50%,
+      #0FA0CE 50%
+    );
+  }
+  blockquote {
+    border-left: 8px solid #0FA0CE;
+  }
+  .nanobar .bar {
+    background: #0FA0CE;
+  }
+  .button.button-primary:hover,
+  button.button-primary:hover,
+  input[type="submit"].button-primary:hover,
+  input[type="reset"].button-primary:hover,
+  input[type="button"].button-primary:hover,
+  .button.button-primary:focus,
+  button.button-primary:focus,
+  input[type="submit"].button-primary:focus,
+  input[type="reset"].button-primary:focus,
+  input[type="button"].button-primary:focus {
+    background-color: #0FA0CE;
+    border-color: #0FA0CE;
+  }
+  input[type="email"]:focus,
+  input[type="number"]:focus,
+  input[type="search"]:focus,
+  input[type="text"]:focus,
+  input[type="tel"]:focus,
+  input[type="url"]:focus,
+  input[type="password"]:focus,
+  textarea:focus,
+  select:focus {
+    border: 1px solid #0FA0CE;
+  }
+</style>
+
+  <!-- Google Analytics (With Privacy Settings On)
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+
+<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="进阶" type="application/atom+xml">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div>
+
+        <div class="row">
+  <div class="two columns" style="max-width: 50px">
+    <h1 class="mt-2 mode">
+      <div onclick=setDarkMode(true) id="darkBtn">🌑</div>
+      <div onclick=setDarkMode(false) id="lightBtn" class=hidden>☀️</div>
+      <script >
+        if (localStorage.getItem('preferredTheme') == 'dark') {
+          setDarkMode(true)
+        }
+        function setDarkMode(isDark) {
+          var darkBtn = document.getElementById('darkBtn')
+          var lightBtn = document.getElementById('lightBtn')
+          if (isDark) {
+            lightBtn.style.display = "block"
+            darkBtn.style.display = "none"
+            localStorage.setItem('preferredTheme', 'dark');
+          } else {
+            lightBtn.style.display = "none"
+            darkBtn.style.display = "block"
+            localStorage.removeItem('preferredTheme');
+          }
+          document.body.classList.toggle("darkmode");
+        }
+      </script>
+    </h1>
   </div>
 
-{% endblock %}
+  <div class="six columns ml-1">
+    <h1 class="mt-2">
+      UP&amp;UP
+    </h1>
+  </div>
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+  <div class="twelve columns">
+    <div class="row">
+      <div class="nine columns left">
+        <a href="/">Home</a>
+        
+        
+      </div>
+    </div>
+    <hr style="margin-bottom: 2.6rem">
+  </div>
+</div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+        <div class="trans">
+            <h2>在note上添加上vue-router</h2>
+
+  <p>把note项目改造了一下，采用路由的方式<br>单页面应用</p>
+<h3 id="记录一下"><a href="#记录一下" class="headerlink" title="记录一下"></a>记录一下</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">在src下新建文件夹router</span><br><span class="line"></span><br><span class="line">在main.js中</span><br><span class="line">import router from <span class="string">&#x27;./router&#x27;</span></span><br><span class="line">import Vue from <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"></span><br><span class="line">Vue.use(router)</span><br><span class="line"></span><br><span class="line">new Vue(&#123;</span><br><span class="line">	router</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="之前的写法"><a href="#之前的写法" class="headerlink" title="之前的写法"></a>之前的写法</h3><pre><code>import router from &#39;./router&#39;
+import Vue from &#39;vue&#39;
+
+Vue.use(router)
+
+new Vue(&#123;
+    store, //vuex
+    el: &#39;#app&#39;,
+    router,
+    template: &#39;&lt;App/&gt;&#39;,
+    components: &#123; App &#125; //import App from &#39;./App&#39;
+&#125;)
+</code></pre>
+<h3 id="现在的写法"><a href="#现在的写法" class="headerlink" title="现在的写法"></a>现在的写法</h3><pre><code>new Vue(&#123;
+    store, //vuex
+    el: &#39;#app&#39;,
+    router,
+    ...App
+&#125;)
+</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.vue</span><br><span class="line"></span><br><span class="line">&lt;router-view&gt;&lt;/router-view&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="路由文件-router-index-js"><a href="#路由文件-router-index-js" class="headerlink" title="路由文件 router/index.js"></a>路由文件 router/index.js</h3><pre><code>import Router from &#39;vue-router&#39;
+import Index from &#39;@/views/Index&#39;
+
+Vue.use(Router)
+
+export default new Router(&#123;
+    routes: [
+    &#123;
+        path: &#39;/index&#39;,
+        name: &#39;index&#39;,
+        component: Index
+    &#125;,&#123;
+        
+    &#125;]
+&#125;)
+</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">配置完router后，发现url为 http://localhost:8080/<span class="comment">#/</span></span><br><span class="line">在此就要了解一下 vue-router 是默认<span class="built_in">hash</span>模式的，</span><br><span class="line">也就是说当url改变时，页面不会重新加载，相当于锚点跳转</span><br><span class="line">如果不想要这种<span class="built_in">hash</span>模式，可以采用history.pushState API完成跳转</span><br></pre></td></tr></table></figure>
+<h3 id="vue2-0-路由选择-Modes"><a href="#vue2-0-路由选择-Modes" class="headerlink" title="vue2.0 路由选择 Modes"></a>vue2.0 路由选择 Modes</h3><pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">new Router(&#123;</span><br><span class="line">	<span class="built_in">history</span>: <span class="literal">true</span>,</span><br><span class="line">	routes:[]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</code></pre>
+<h3 id="但需要注意的是，这种情况需要后端的支持，比如locahost-8080-login-id这种就会找不到"><a href="#但需要注意的是，这种情况需要后端的支持，比如locahost-8080-login-id这种就会找不到" class="headerlink" title="但需要注意的是，这种情况需要后端的支持，比如locahost:8080/login/:id这种就会找不到"></a>但需要注意的是，这种情况需要后端的支持，比如locahost:8080/login/:id这种就会找不到</h3><pre><code>暂时处理方法可以是 定义一个routes * 当所有找不到的path时 都指向404.vue
+</code></pre>
+
+  <p> — Dec 13, 2017</p>
+  
+
+
+          <div class="row mt-2">
+  
+    <div class="eight columns">
+      <p id="madewith">Made with ❤ and
+        <a class="footer-link icon" href="https://hexo.io" target="_blank" style="text-decoration: none;" rel="noreferrer" aria-label="Hexo.io">
+        <svg class="hexo svg-hov" width="14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Hexo.js</title><path d="M12 .007L1.57 6.056V18.05L12 23.995l10.43-6.049V5.952L12 .007zm4.798 17.105l-.939.521-.939-.521V12.94H9.08v4.172l-.94.521-.938-.521V6.89l.939-.521.939.521v4.172h5.84V6.89l.94-.521.938.521v10.222z"/></svg>
+        </a>
+        
+    </div>
+
+    <!-- Sepcial thanks to https://simpleicons.org/ for the icons -->
+    <div class="four columns mb-3 posisi" >
+      
+
+      
+
+      
+
+      
+
+    </div>
+  
+</div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <script src="/js/nanobar.min.js"></script>
+  <script>
+    var options = {
+      classname: 'nanobar',
+      id: 'myNanobar'
+    };
+    var nanobar = new Nanobar(options);
+    nanobar.go(30);
+    nanobar.go(76);
+    nanobar.go(100);
+  </script>
+
+</body>
+
+</html>

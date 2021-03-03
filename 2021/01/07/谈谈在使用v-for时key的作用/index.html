@@ -1,37 +1,268 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+  <!-- Minima -->
+  <!-- Hexo theme created by @adisaktijrs -->
 
-{% block page_class %}page-post-detail{% endblock %}
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
 
+  
+  <title>说说使用v-for时key的作用</title>
+  
+  <link rel="sitemap" href="http://yoursite.comsitemap.xml" />
+  
+  <link rel="canonical" href="http://yoursite.com/2021/01/07/%E8%B0%88%E8%B0%88%E5%9C%A8%E4%BD%BF%E7%94%A8v-for%E6%97%B6key%E7%9A%84%E4%BD%9C%E7%94%A8/">
+  
+  <meta name="description" content="通常我们在用v-for指令渲染列表时，如果没有定义 v-bind:key，那么会得到错误提示，可能你会不以为然地加上就万事大吉了但，在某些情况下还是要小心为妙 先来看一下vue官方文档  当 Vue 正在更新使用 v-for 渲染的元素列表时，它默认使用 “就地更新”的策略。如果数据项的顺序被改变，">
+  
+  
+  <meta name="author" content="karen">
+  
+  <meta property="og:image" content="http://yoursite.comundefined">
+  
+  <meta property="og:site_name" content="进阶" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="说说使用v-for时key的作用" />
+  
+  <meta property="og:description" content="通常我们在用v-for指令渲染列表时，如果没有定义 v-bind:key，那么会得到错误提示，可能你会不以为然地加上就万事大吉了但，在某些情况下还是要小心为妙 先来看一下vue官方文档  当 Vue 正在更新使用 v-for 渲染的元素列表时，它默认使用 “就地更新”的策略。如果数据项的顺序被改变，">
+  
+  <meta property="og:url" content="http://yoursite.com/2021/01/07/%E8%B0%88%E8%B0%88%E5%9C%A8%E4%BD%BF%E7%94%A8v-for%E6%97%B6key%E7%9A%84%E4%BD%9C%E7%94%A8/" />
 
-{% block content %}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="说说使用v-for时key的作用">
+  
+  <meta name="twitter:description" content="通常我们在用v-for指令渲染列表时，如果没有定义 v-bind:key，那么会得到错误提示，可能你会不以为然地加上就万事大吉了但，在某些情况下还是要小心为妙 先来看一下vue官方文档  当 Vue 正在更新使用 v-for 渲染的元素列表时，它默认使用 “就地更新”的策略。如果数据项的顺序被改变，">
+  
+  
+  <meta name="twitter:image" content="http://yoursite.comundefined">
+  
+  <meta name="twitter:url" content="http://yoursite.com/2021/01/07/%E8%B0%88%E8%B0%88%E5%9C%A8%E4%BD%BF%E7%94%A8v-for%E6%97%B6key%E7%9A%84%E4%BD%9C%E7%94%A8/" />
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
-    </div>
+  <!-- Preload fonts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="preload" href="../fonts/dm-serif-display-v4-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/inter-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+<link rel="stylesheet" href="/css/normalize.css">
+
+  
+<link rel="stylesheet" href="/css/skeleton.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+<link rel="stylesheet" href="/css/prism-dark.css">
+
+  
+<link rel="stylesheet" href="/css/prism-line-numbers.css">
+
+  <!-- User css -->
+  
+  
+<link rel="stylesheet" href="/css/user.css">
+
+  
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+
+  <!-- Custom Theme Color Style
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <style>
+  a:not(.icon) {
+    text-decoration-color: #0FA0CE;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 50%,
+      #0FA0CE 50%
+    );
+  }
+  blockquote {
+    border-left: 8px solid #0FA0CE;
+  }
+  .nanobar .bar {
+    background: #0FA0CE;
+  }
+  .button.button-primary:hover,
+  button.button-primary:hover,
+  input[type="submit"].button-primary:hover,
+  input[type="reset"].button-primary:hover,
+  input[type="button"].button-primary:hover,
+  .button.button-primary:focus,
+  button.button-primary:focus,
+  input[type="submit"].button-primary:focus,
+  input[type="reset"].button-primary:focus,
+  input[type="button"].button-primary:focus {
+    background-color: #0FA0CE;
+    border-color: #0FA0CE;
+  }
+  input[type="email"]:focus,
+  input[type="number"]:focus,
+  input[type="search"]:focus,
+  input[type="text"]:focus,
+  input[type="tel"]:focus,
+  input[type="url"]:focus,
+  input[type="password"]:focus,
+  textarea:focus,
+  select:focus {
+    border: 1px solid #0FA0CE;
+  }
+</style>
+
+  <!-- Google Analytics (With Privacy Settings On)
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+
+<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="进阶" type="application/atom+xml">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div>
+
+        <div class="row">
+  <div class="two columns" style="max-width: 50px">
+    <h1 class="mt-2 mode">
+      <div onclick=setDarkMode(true) id="darkBtn">🌑</div>
+      <div onclick=setDarkMode(false) id="lightBtn" class=hidden>☀️</div>
+      <script >
+        if (localStorage.getItem('preferredTheme') == 'dark') {
+          setDarkMode(true)
+        }
+        function setDarkMode(isDark) {
+          var darkBtn = document.getElementById('darkBtn')
+          var lightBtn = document.getElementById('lightBtn')
+          if (isDark) {
+            lightBtn.style.display = "block"
+            darkBtn.style.display = "none"
+            localStorage.setItem('preferredTheme', 'dark');
+          } else {
+            lightBtn.style.display = "none"
+            darkBtn.style.display = "block"
+            localStorage.removeItem('preferredTheme');
+          }
+          document.body.classList.toggle("darkmode");
+        }
+      </script>
+    </h1>
   </div>
 
-{% endblock %}
+  <div class="six columns ml-1">
+    <h1 class="mt-2">
+      UP&amp;UP
+    </h1>
+  </div>
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+  <div class="twelve columns">
+    <div class="row">
+      <div class="nine columns left">
+        <a href="/">Home</a>
+        
+        
+      </div>
+    </div>
+    <hr style="margin-bottom: 2.6rem">
+  </div>
+</div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+        <div class="trans">
+            <h2>说说使用v-for时key的作用</h2>
+
+  <p>通常我们在用v-for指令渲染列表时，如果没有定义 <strong>v-bind:key</strong>，那么会得到错误提示，<br>可能你会不以为然地加上就万事大吉了<br>但，在某些情况下还是要小心为妙</p>
+<p>先来看一下vue官方文档</p>
+<blockquote>
+<p>当 Vue 正在更新使用 v-for 渲染的元素列表时，它默认使用 <strong>“就地更新”</strong>的策略。<br>如果数据项的顺序被改变，Vue 将<strong>不会移动</strong>DOM元素来匹配数据项的顺序，而是就地更新每个元素，并且确保它们在每个索引位置正确渲染。</p>
+</blockquote>
+<p><strong>即当不适用key时，vue更倾向于复用DOM，尝试改变数据层面而不是去操作DOM层面</strong><br>但文档上提出来这个模式的使用范围：</p>
+<blockquote>
+<p>这个默认的模式是高效的，但是只适用于<strong>不依赖子组件状态或临时DOM状态</strong>的列表渲染输出。</p>
+</blockquote>
+<p>我们来看个例子，</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">test-comp</span> <span class="attr">:data</span>=<span class="string">&quot;item&quot;</span> <span class="attr">v-for</span>=<span class="string">&quot;(item,index) in itemsArray&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">test-comp</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;handle&quot;</span>&gt;</span>unshift first<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>子组件 test-comp</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; data.word &#125;&#125; - &#123;&#123; data.id &#125;&#125; - &#123;&#123; data.date &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;请填写&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>文档中提到了<strong>临时DOM状态</strong>，这个例子里我们看子组件里的input输入框，该输入框没有绑定Vue实例中的任何数据，也就是说他是独立于当前应用程序的状态<br>如果我们在框中输入内容，那么这个内容将会被暂时存储在临时DOM状态中</p>
+</blockquote>
+<p><img src="/img/vue-for-key.png" alt="图1"></p>
+<blockquote>
+<p>更改itemsArray数组元素顺序</p>
+</blockquote>
+<p>我们随便输入一些到输入框中，我们通过底下的unshift first 按钮去改变顺序，在数据头部增加一组ID为11的数据<br><img src="/img/vue-for-key2.png" alt="图2"><br><strong>可以看到input输入框不会随着数组顺序的改变而变化</strong><br>为何？这就是上面说的就地更新，改变数组元素顺序并没有移动DOM元素，而是数据发生变化。</p>
+<p>于是，我们把key属性加上</p>
+<blockquote>
+<p>使用 key 时，它会基于key的变化重新排列元素顺序，并且会移除key不存在的元素</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">test-comp</span> <span class="attr">:data</span>=<span class="string">&quot;item&quot;</span> <span class="attr">v-for</span>=<span class="string">&quot;(item,index) in itemsArray&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;index&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">test-comp</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>但结果并没有变化<br><strong>由于这里的key值只是采用了当前项的索引，当数组数据改变时，index并没有变化，只是传入的item发生了改变，所以输入框的内容还是不会改变</strong></p>
+<p>我们改用数据项的id作为key值</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">test-comp</span> <span class="attr">:data</span>=<span class="string">&quot;item&quot;</span> <span class="attr">v-for</span>=<span class="string">&quot;(item,index) in itemsArray&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;item.id&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">test-comp</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="/img/vue-for-key3.png" alt="图3"><br><strong>id是每项数据的唯一标识，能够确保每项的key是独特唯一的，vue能正确跟踪key变化而重新排列元素顺序</strong></p>
+<p>也就是说，我们应该尽可能地使用节点数据的<strong>唯一ID</strong><br>这样做Vue可以更准确地跟踪每个节点的身份并更新组件状态，并且能够重用和重新排列现有元素</p>
+<blockquote>
+<p><strong>注意</strong>: 不要使用<strong>对象</strong>或<strong>数组</strong>之类的<strong>非基本类型值</strong>作为v-for的key。<br>接受的值为：number | string | boolean (2.4.2 新增) | symbol (2.5.12 新增)<br>重复的 key 会造成渲染错误</p>
+</blockquote>
+
+  <p> — Jan 7, 2021</p>
+  
+
+
+          <div class="row mt-2">
+  
+    <div class="eight columns">
+      <p id="madewith">Made with ❤ and
+        <a class="footer-link icon" href="https://hexo.io" target="_blank" style="text-decoration: none;" rel="noreferrer" aria-label="Hexo.io">
+        <svg class="hexo svg-hov" width="14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Hexo.js</title><path d="M12 .007L1.57 6.056V18.05L12 23.995l10.43-6.049V5.952L12 .007zm4.798 17.105l-.939.521-.939-.521V12.94H9.08v4.172l-.94.521-.938-.521V6.89l.939-.521.939.521v4.172h5.84V6.89l.94-.521.938.521v10.222z"/></svg>
+        </a>
+        
+    </div>
+
+    <!-- Sepcial thanks to https://simpleicons.org/ for the icons -->
+    <div class="four columns mb-3 posisi" >
+      
+
+      
+
+      
+
+      
+
+    </div>
+  
+</div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <script src="/js/nanobar.min.js"></script>
+  <script>
+    var options = {
+      classname: 'nanobar',
+      id: 'myNanobar'
+    };
+    var nanobar = new Nanobar(options);
+    nanobar.go(30);
+    nanobar.go(76);
+    nanobar.go(100);
+  </script>
+
+</body>
+
+</html>

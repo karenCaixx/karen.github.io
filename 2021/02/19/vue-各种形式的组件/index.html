@@ -1,37 +1,249 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+  <!-- Minima -->
+  <!-- Hexo theme created by @adisaktijrs -->
 
-{% block page_class %}page-post-detail{% endblock %}
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
 
+  
+  <title>vue-各种形式的组件</title>
+  
+  <link rel="sitemap" href="http://yoursite.comsitemap.xml" />
+  
+  <link rel="canonical" href="http://yoursite.com/2021/02/19/vue-%E5%90%84%E7%A7%8D%E5%BD%A2%E5%BC%8F%E7%9A%84%E7%BB%84%E4%BB%B6/">
+  
+  <meta name="description" content="全局注册组件  id命名方式: 字符串 驼峰 首字母大写 全局组件注册到Vue.options -&amp;gt; Vue.options.components -&amp;gt; 扩展到当前组件的vm.$options.components  局部组件  注册到vm.$options.components  异步">
+  
+  
+  <meta name="author" content="karen">
+  
+  <meta property="og:image" content="http://yoursite.comundefined">
+  
+  <meta property="og:site_name" content="进阶" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="vue-各种形式的组件" />
+  
+  <meta property="og:description" content="全局注册组件  id命名方式: 字符串 驼峰 首字母大写 全局组件注册到Vue.options -&amp;gt; Vue.options.components -&amp;gt; 扩展到当前组件的vm.$options.components  局部组件  注册到vm.$options.components  异步">
+  
+  <meta property="og:url" content="http://yoursite.com/2021/02/19/vue-%E5%90%84%E7%A7%8D%E5%BD%A2%E5%BC%8F%E7%9A%84%E7%BB%84%E4%BB%B6/" />
 
-{% block content %}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="vue-各种形式的组件">
+  
+  <meta name="twitter:description" content="全局注册组件  id命名方式: 字符串 驼峰 首字母大写 全局组件注册到Vue.options -&amp;gt; Vue.options.components -&amp;gt; 扩展到当前组件的vm.$options.components  局部组件  注册到vm.$options.components  异步">
+  
+  
+  <meta name="twitter:image" content="http://yoursite.comundefined">
+  
+  <meta name="twitter:url" content="http://yoursite.com/2021/02/19/vue-%E5%90%84%E7%A7%8D%E5%BD%A2%E5%BC%8F%E7%9A%84%E7%BB%84%E4%BB%B6/" />
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
-    </div>
+  <!-- Preload fonts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="preload" href="../fonts/dm-serif-display-v4-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/inter-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+<link rel="stylesheet" href="/css/normalize.css">
+
+  
+<link rel="stylesheet" href="/css/skeleton.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+<link rel="stylesheet" href="/css/prism-dark.css">
+
+  
+<link rel="stylesheet" href="/css/prism-line-numbers.css">
+
+  <!-- User css -->
+  
+  
+<link rel="stylesheet" href="/css/user.css">
+
+  
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+
+  <!-- Custom Theme Color Style
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <style>
+  a:not(.icon) {
+    text-decoration-color: #0FA0CE;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 50%,
+      #0FA0CE 50%
+    );
+  }
+  blockquote {
+    border-left: 8px solid #0FA0CE;
+  }
+  .nanobar .bar {
+    background: #0FA0CE;
+  }
+  .button.button-primary:hover,
+  button.button-primary:hover,
+  input[type="submit"].button-primary:hover,
+  input[type="reset"].button-primary:hover,
+  input[type="button"].button-primary:hover,
+  .button.button-primary:focus,
+  button.button-primary:focus,
+  input[type="submit"].button-primary:focus,
+  input[type="reset"].button-primary:focus,
+  input[type="button"].button-primary:focus {
+    background-color: #0FA0CE;
+    border-color: #0FA0CE;
+  }
+  input[type="email"]:focus,
+  input[type="number"]:focus,
+  input[type="search"]:focus,
+  input[type="text"]:focus,
+  input[type="tel"]:focus,
+  input[type="url"]:focus,
+  input[type="password"]:focus,
+  textarea:focus,
+  select:focus {
+    border: 1px solid #0FA0CE;
+  }
+</style>
+
+  <!-- Google Analytics (With Privacy Settings On)
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+
+<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="进阶" type="application/atom+xml">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div>
+
+        <div class="row">
+  <div class="two columns" style="max-width: 50px">
+    <h1 class="mt-2 mode">
+      <div onclick=setDarkMode(true) id="darkBtn">🌑</div>
+      <div onclick=setDarkMode(false) id="lightBtn" class=hidden>☀️</div>
+      <script >
+        if (localStorage.getItem('preferredTheme') == 'dark') {
+          setDarkMode(true)
+        }
+        function setDarkMode(isDark) {
+          var darkBtn = document.getElementById('darkBtn')
+          var lightBtn = document.getElementById('lightBtn')
+          if (isDark) {
+            lightBtn.style.display = "block"
+            darkBtn.style.display = "none"
+            localStorage.setItem('preferredTheme', 'dark');
+          } else {
+            lightBtn.style.display = "none"
+            darkBtn.style.display = "block"
+            localStorage.removeItem('preferredTheme');
+          }
+          document.body.classList.toggle("darkmode");
+        }
+      </script>
+    </h1>
   </div>
 
-{% endblock %}
+  <div class="six columns ml-1">
+    <h1 class="mt-2">
+      UP&amp;UP
+    </h1>
+  </div>
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+  <div class="twelve columns">
+    <div class="row">
+      <div class="nine columns left">
+        <a href="/">Home</a>
+        
+        
+      </div>
+    </div>
+    <hr style="margin-bottom: 2.6rem">
+  </div>
+</div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+        <div class="trans">
+            <h2>vue-各种形式的组件</h2>
+
+  <blockquote>
+<p>全局注册组件</p>
+</blockquote>
+<p>id命名方式: 字符串 驼峰 首字母大写</p>
+<p>全局组件注册到Vue.options -&gt; Vue.options.components -&gt; 扩展到当前组件的vm.$options.components</p>
+<blockquote>
+<p>局部组件</p>
+</blockquote>
+<p>注册到vm.$options.components</p>
+<blockquote>
+<p>异步组件</p>
+</blockquote>
+<p><strong>应用：减少首屏体积，非首屏组件按需加载</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">&#x27;async-example&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// require 告诉 webpack 自动将编译后的代码分割成不同的块</span></span><br><span class="line">    <span class="comment">// 这些块将通过 Ajax 请求自动下载</span></span><br><span class="line">    <span class="built_in">require</span>([<span class="string">&#x27;./my-async-components], resolve)</span></span><br><span class="line"><span class="string">&#125;)</span></span><br></pre></td></tr></table></figure>
+<p>除上面提到的注册方式，还有2种创建方式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(</span><br><span class="line">    <span class="string">&#x27;async-webpack-example&#x27;</span>,</span><br><span class="line">    () =&gt; <span class="keyword">import</span>(<span class="string">&#x27;./my-async-component&#x27;</span>) <span class="comment">// 返回一个 Promise 对象</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+  <p> — Feb 19, 2021</p>
+  
+
+
+          <div class="row mt-2">
+  
+    <div class="eight columns">
+      <p id="madewith">Made with ❤ and
+        <a class="footer-link icon" href="https://hexo.io" target="_blank" style="text-decoration: none;" rel="noreferrer" aria-label="Hexo.io">
+        <svg class="hexo svg-hov" width="14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Hexo.js</title><path d="M12 .007L1.57 6.056V18.05L12 23.995l10.43-6.049V5.952L12 .007zm4.798 17.105l-.939.521-.939-.521V12.94H9.08v4.172l-.94.521-.938-.521V6.89l.939-.521.939.521v4.172h5.84V6.89l.94-.521.938.521v10.222z"/></svg>
+        </a>
+        
+    </div>
+
+    <!-- Sepcial thanks to https://simpleicons.org/ for the icons -->
+    <div class="four columns mb-3 posisi" >
+      
+
+      
+
+      
+
+      
+
+    </div>
+  
+</div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <script src="/js/nanobar.min.js"></script>
+  <script>
+    var options = {
+      classname: 'nanobar',
+      id: 'myNanobar'
+    };
+    var nanobar = new Nanobar(options);
+    nanobar.go(30);
+    nanobar.go(76);
+    nanobar.go(100);
+  </script>
+
+</body>
+
+</html>

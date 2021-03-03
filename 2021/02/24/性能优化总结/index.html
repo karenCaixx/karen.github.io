@@ -1,37 +1,284 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+  <!-- Minima -->
+  <!-- Hexo theme created by @adisaktijrs -->
 
-{% block page_class %}page-post-detail{% endblock %}
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
 
+  
+  <title>性能优化总结</title>
+  
+  <link rel="sitemap" href="http://yoursite.comsitemap.xml" />
+  
+  <link rel="canonical" href="http://yoursite.com/2021/02/24/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/">
+  
+  <meta name="description" content="希望这次学习能构建一个完整的性能优化体系，而不是人云亦云 不急着去做，而是多思考到底我们需要优化什么，哪些是关注的点 用什么衡量？ – 性能指标设定指标后，优化到什么程度才合适？这就要确定 性能标准然后开始性能实践，接着采集上报，这就出现监控预警平台 那么，  什么样的指标值得关注   可衡量的，即">
+  
+  
+  <meta name="author" content="karen">
+  
+  <meta property="og:image" content="http://yoursite.comundefined">
+  
+  <meta property="og:site_name" content="进阶" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="性能优化总结" />
+  
+  <meta property="og:description" content="希望这次学习能构建一个完整的性能优化体系，而不是人云亦云 不急着去做，而是多思考到底我们需要优化什么，哪些是关注的点 用什么衡量？ – 性能指标设定指标后，优化到什么程度才合适？这就要确定 性能标准然后开始性能实践，接着采集上报，这就出现监控预警平台 那么，  什么样的指标值得关注   可衡量的，即">
+  
+  <meta property="og:url" content="http://yoursite.com/2021/02/24/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" />
 
-{% block content %}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="性能优化总结">
+  
+  <meta name="twitter:description" content="希望这次学习能构建一个完整的性能优化体系，而不是人云亦云 不急着去做，而是多思考到底我们需要优化什么，哪些是关注的点 用什么衡量？ – 性能指标设定指标后，优化到什么程度才合适？这就要确定 性能标准然后开始性能实践，接着采集上报，这就出现监控预警平台 那么，  什么样的指标值得关注   可衡量的，即">
+  
+  
+  <meta name="twitter:image" content="http://yoursite.comundefined">
+  
+  <meta name="twitter:url" content="http://yoursite.com/2021/02/24/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" />
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
-    </div>
+  <!-- Preload fonts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="preload" href="../fonts/dm-serif-display-v4-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/inter-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+<link rel="stylesheet" href="/css/normalize.css">
+
+  
+<link rel="stylesheet" href="/css/skeleton.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+<link rel="stylesheet" href="/css/prism-dark.css">
+
+  
+<link rel="stylesheet" href="/css/prism-line-numbers.css">
+
+  <!-- User css -->
+  
+  
+<link rel="stylesheet" href="/css/user.css">
+
+  
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+
+  <!-- Custom Theme Color Style
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <style>
+  a:not(.icon) {
+    text-decoration-color: #0FA0CE;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 50%,
+      #0FA0CE 50%
+    );
+  }
+  blockquote {
+    border-left: 8px solid #0FA0CE;
+  }
+  .nanobar .bar {
+    background: #0FA0CE;
+  }
+  .button.button-primary:hover,
+  button.button-primary:hover,
+  input[type="submit"].button-primary:hover,
+  input[type="reset"].button-primary:hover,
+  input[type="button"].button-primary:hover,
+  .button.button-primary:focus,
+  button.button-primary:focus,
+  input[type="submit"].button-primary:focus,
+  input[type="reset"].button-primary:focus,
+  input[type="button"].button-primary:focus {
+    background-color: #0FA0CE;
+    border-color: #0FA0CE;
+  }
+  input[type="email"]:focus,
+  input[type="number"]:focus,
+  input[type="search"]:focus,
+  input[type="text"]:focus,
+  input[type="tel"]:focus,
+  input[type="url"]:focus,
+  input[type="password"]:focus,
+  textarea:focus,
+  select:focus {
+    border: 1px solid #0FA0CE;
+  }
+</style>
+
+  <!-- Google Analytics (With Privacy Settings On)
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+
+<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="进阶" type="application/atom+xml">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div>
+
+        <div class="row">
+  <div class="two columns" style="max-width: 50px">
+    <h1 class="mt-2 mode">
+      <div onclick=setDarkMode(true) id="darkBtn">🌑</div>
+      <div onclick=setDarkMode(false) id="lightBtn" class=hidden>☀️</div>
+      <script >
+        if (localStorage.getItem('preferredTheme') == 'dark') {
+          setDarkMode(true)
+        }
+        function setDarkMode(isDark) {
+          var darkBtn = document.getElementById('darkBtn')
+          var lightBtn = document.getElementById('lightBtn')
+          if (isDark) {
+            lightBtn.style.display = "block"
+            darkBtn.style.display = "none"
+            localStorage.setItem('preferredTheme', 'dark');
+          } else {
+            lightBtn.style.display = "none"
+            darkBtn.style.display = "block"
+            localStorage.removeItem('preferredTheme');
+          }
+          document.body.classList.toggle("darkmode");
+        }
+      </script>
+    </h1>
   </div>
 
-{% endblock %}
+  <div class="six columns ml-1">
+    <h1 class="mt-2">
+      UP&amp;UP
+    </h1>
+  </div>
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+  <div class="twelve columns">
+    <div class="row">
+      <div class="nine columns left">
+        <a href="/">Home</a>
+        
+        
+      </div>
+    </div>
+    <hr style="margin-bottom: 2.6rem">
+  </div>
+</div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+        <div class="trans">
+            <h2>性能优化总结</h2>
+
+  <p>希望这次学习能构建一个完整的性能优化体系，而不是人云亦云</p>
+<p>不急着去做，而是多思考<br>到底我们需要优化什么，哪些是关注的点</p>
+<p>用什么衡量？ – <strong>性能指标</strong><br>设定指标后，优化到什么程度才合适？这就要确定 <strong>性能标准</strong><br>然后开始<strong>性能实践</strong>，接着<strong>采集上报</strong>，这就出现<strong>监控预警平台</strong></p>
+<p>那么，</p>
+<blockquote>
+<p>什么样的指标值得关注</p>
+</blockquote>
+<ul>
+<li>可衡量的，即可通过代码来度量</li>
+<li>关注以用户为中心的关键结果和真实体验</li>
+</ul>
+<blockquote>
+<p>几个关键指标，几个极限值待补充</p>
+</blockquote>
+<ul>
+<li>加载：LCP (最大绘制内容)</li>
+<li>交互：CLS (视觉稳定性指标，即布局偏移量)</li>
+<li>FID (首次输入延迟)</li>
+</ul>
+<blockquote>
+<p>首屏时间=白屏时间+渲染时间</p>
+</blockquote>
+<blockquote>
+<p>从页面加载过程来看3个阶段中有哪些性能瓶颈点</p>
+</blockquote>
+<ul>
+<li><strong>客户端发起请求阶段</strong><br>当用户在浏览器输入URL时，浏览器向DNS服务器发起DNS查询，获取到IP地址，然后浏览器通过IP地址找到目标服务器，<br>发起TCP三次握手和TLS协商，建立TCP连接</li>
+</ul>
+<p>在这个过程中，<strong>本地缓存</strong>、<strong>DNS 查询</strong>、<strong>HTTP 请求</strong>容易成为瓶颈点<br><strong>本地缓存</strong>可以让静态资源加载更快，一般包括强缓存和协商缓存两种形式<br>每进行一次<strong>DNS 查询</strong>，都需要经历手机到信号塔再到认证DNS服务器的过程，耗时过长，可以让DNS查询走缓存<br><strong>HTTP 请求</strong>最大的瓶颈点在于请求阻塞，一般浏览器同域名的连接限制为6个，为了解决阻塞问题，可以通过不同域名增加请求并行<br>连接数，例如将静态服务器xxx.com分散为几个域名，每次请求随机选一个域名地址进行请求</p>
+<ul>
+<li><p><strong>服务端数据处理请求阶段</strong><br>服务端接收到请求后，会有检验拦截，处理加工数据最后返回给前端<br>那么这个过程中，需要关注<strong>是否做了数据缓存处理、是否做了 Gip 压缩，以及是否有重定向</strong></p>
+</li>
+<li><p><strong>客户端页面渲染阶段</strong><br>前端拿到数据后，开始解析并渲染</p>
+</li>
+</ul>
+<p><strong>所谓解析，就是 HTML 解析器把页面内容转换为 DOM 树和 CSSOM树的过程。</strong><br>构建DOM树的过程中有3点会严重影响前端性能：</p>
+<ul>
+<li>当 HTML 标签不满足 Web 语义化时，浏览器就需要更多时间去解析 DOM 标签的含义</li>
+<li>DOM 节点的数量越多，构建 DOM 树的时间就会变长，进而延长解析时间</li>
+<li>文档中包含<SCRIPT> 标签时，DOM构造过程就会被阻塞暂停，等待服务器请求脚本</li>
+</ul>
+<blockquote>
+<p>性能瓶颈点<br>数据缓存<br>重定向</p>
+</blockquote>
+<blockquote>
+<p>手动采集，一般通过埋点，兼容性强，但通常与业务代码耦合，覆盖率不足<br>自动化采集，引入一段通用代码，独立性强，但无法满足个性化需求</p>
+</blockquote>
+<blockquote>
+<p>服务端模板业务，DOMContentLoaded<br>SPA单页面，Performance API有偏差，MutationObserver</p>
+</blockquote>
+
+  <p> — Feb 24, 2021</p>
+  
+
+
+          <div class="row mt-2">
+  
+    <div class="eight columns">
+      <p id="madewith">Made with ❤ and
+        <a class="footer-link icon" href="https://hexo.io" target="_blank" style="text-decoration: none;" rel="noreferrer" aria-label="Hexo.io">
+        <svg class="hexo svg-hov" width="14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Hexo.js</title><path d="M12 .007L1.57 6.056V18.05L12 23.995l10.43-6.049V5.952L12 .007zm4.798 17.105l-.939.521-.939-.521V12.94H9.08v4.172l-.94.521-.938-.521V6.89l.939-.521.939.521v4.172h5.84V6.89l.94-.521.938.521v10.222z"/></svg>
+        </a>
+        
+    </div>
+
+    <!-- Sepcial thanks to https://simpleicons.org/ for the icons -->
+    <div class="four columns mb-3 posisi" >
+      
+
+      
+
+      
+
+      
+
+    </div>
+  
+</div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <script src="/js/nanobar.min.js"></script>
+  <script>
+    var options = {
+      classname: 'nanobar',
+      id: 'myNanobar'
+    };
+    var nanobar = new Nanobar(options);
+    nanobar.go(30);
+    nanobar.go(76);
+    nanobar.go(100);
+  </script>
+
+</body>
+
+</html>
